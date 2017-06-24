@@ -1,4 +1,7 @@
-﻿namespace WSCME.Domain
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace WSCME.Domain
 {
     /// <summary>
     /// 培训点分类
@@ -6,6 +9,9 @@
     /// </summary>
     public class TrainingCentreCategory:EntitiesBase
     {
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
+        public IEnumerable<TrainingCentreAndCategory> TrainingCentres { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WSCME.Domain
 {
@@ -8,9 +9,11 @@ namespace WSCME.Domain
     /// </summary>
     public class TrainingCentreType:EntitiesBase
     {
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
         public int Desc { get; set; }
-
-        public virtual ICollection<TrainingCentre> TrainingCentre { get; set; }
+        
+        public IEnumerable<TrainingCentreAndType> TrainingCentreAndTypes { get; set; }
     }
 }

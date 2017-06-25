@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using WSCME.Data;
+using WSCME.Data.Infrastructure;
 
 namespace WSCME.Api
 {
@@ -32,7 +33,16 @@ namespace WSCME.Api
             services.AddDbContext<CMEDbContext>(
                 options=>options.UseSqlServer(Configuration.GetConnectionString("SqlServer"))
                 );
+
             services.AddMvc();
+            //注册异步提交服务
+            services.AddScoped<IUnitOfWorkAsync, UnitOfWorkAsync>(); 
+            
+            
+            services.AddScoped<ITrainingCentreCategoryRepository, TrainingCentreCategoryRepository>();
+
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

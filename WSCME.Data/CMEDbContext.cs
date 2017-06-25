@@ -20,5 +20,10 @@ namespace WSCME.Data
             
             base.OnModelCreating(modelBuilder);
         }
+
+        public virtual void Commit()
+        {
+            base.SaveChanges();
+        }
     }
 }

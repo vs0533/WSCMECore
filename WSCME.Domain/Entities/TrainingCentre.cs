@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using WSCME.Infrastructure.Validation;
 
 namespace WSCME.Domain
 {
@@ -13,13 +14,14 @@ namespace WSCME.Domain
         /// </summary>
         [MaxLength(50)]
         [Required]
+        [Name]
         public string Name { get; set; }
         [MaxLength(255)]
         public string  Address { get; set; }
         [MaxLength(20)]
         public string  LinkMain { get; set; }
         [MaxLength(100)]
-        [Required(ErrorMessage ="")]
+        [Required]
         public string Email { get; set; }
         
 

@@ -8,4 +8,8 @@
     <Folder Include="Enum\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WSCME.Infrastructure\WSCME.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

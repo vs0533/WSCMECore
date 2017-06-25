@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCME.Data", "WSCME.Data\WS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCME.Service", "WSCME.Service\WSCME.Service.csproj", "{F88F39AB-5025-4F54-A202-63F3B7E8AC5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCME.Infrastructure", "WSCME.Infrastructure\WSCME.Infrastructure.csproj", "{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F88F39AB-5025-4F54-A202-63F3B7E8AC5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F88F39AB-5025-4F54-A202-63F3B7E8AC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F88F39AB-5025-4F54-A202-63F3B7E8AC5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

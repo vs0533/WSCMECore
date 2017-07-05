@@ -11,10 +11,14 @@ namespace WSCME.Data
         public DbSet<TrainingCentreType> TrainingCentreType { get; set; }
         public DbSet<TrainingCentreCategory> TrainingCentreCategory { get; set; }
         public DbSet<TrainingCentreAndType> TrainingCentreAndType { get; set; }
-        public CMEDbContext(DbContextOptions<CMEDbContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            optionsBuilder.UseSqlServer(@"server=.;uid=sa;pwd=Abc@123;database=CMEDB");
         }
+        //public CMEDbContext(DbContextOptions<CMEDbContext> options) : base(options)
+        //{
+
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             

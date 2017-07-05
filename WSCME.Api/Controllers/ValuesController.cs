@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WSCME.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WSCME.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class ValuesController : Controller
     {
         private readonly ITrainingCentreCategoryRepository repository;
@@ -17,9 +16,23 @@ namespace WSCME.Api.Controllers
         }
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", KingLion.WebUtils.NPinyin.Pinyin.GetInitials("市直继09续教育淄bb博市人事培训中心") };
+            IEnumerable<Dictionary<string, dynamic>> d = new List<Dictionary<string, dynamic>>{
+                new Dictionary<string, dynamic>{
+                    { "id","1"},
+                    { "text","水水"},
+                    { "leaf",true},
+                    { "route","/"}
+                },
+                new Dictionary<string, dynamic>{
+                    { "id","2"},
+                    { "text","得到"},
+                    { "leaf",true},
+                    { "route","/"}
+                }
+            };
+            return new ObjectResult(d);
         }
 
         // GET api/values/5

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 using WSCME.Infrastructure.Validation;
 
 namespace WSCME.Domain
@@ -29,5 +26,8 @@ namespace WSCME.Domain
 
         public IEnumerable<TrainingCentreAndCategory> Categorys { get; set; }
         public IEnumerable<TrainingCentreAndType> Types { get; set; }
+
+        public IEnumerable<RegisterPoint> RegisterPoints { get; set; }
+        public IEnumerable<ExamPoint> ExamPoints { get; set; }
     }
 }

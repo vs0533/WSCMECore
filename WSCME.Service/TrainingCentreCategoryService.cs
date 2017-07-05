@@ -18,8 +18,8 @@ namespace WSCME.Service
     }
     public class TrainingCentreCategoryService : ITrainingCentreCategoryService
     {
-        private readonly ITrainingCentreCategoryRepository trainingCentreRepository;
-        private readonly IUnitOfWorkAsync unitOfWork;
+        private readonly ITrainingCentreCategoryRepository trainingCentreRepository = null;
+        private readonly IUnitOfWorkAsync unitOfWork = null;
         public TrainingCentreCategoryService(
             IUnitOfWorkAsync unitOfWork,
             ITrainingCentreCategoryRepository trainingCentreRepository)

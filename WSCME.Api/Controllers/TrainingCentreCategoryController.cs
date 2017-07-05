@@ -11,10 +11,10 @@ namespace WSCME.Api.Controllers
     [Route("api/TrainingCentreCategory")]
     public class TrainingCentreCategoryController : Controller
     {
-        [HttpPost]
-        public async Task Create()
-        {
+        //[HttpPost]
+        //public async Task Create()
+        //{
             
-        }
+        //}
     }
 }

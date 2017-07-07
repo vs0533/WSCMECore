@@ -9,7 +9,7 @@ namespace WSCME.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> where T :class
     {
-        private readonly CMEDbContext dataContext;
+        protected readonly CMEDbContext dataContext;
         private readonly DbSet<T> dbset;
         public RepositoryBase(CMEDbContext dataContext)
         {

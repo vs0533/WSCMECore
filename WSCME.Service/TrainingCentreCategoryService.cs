@@ -26,9 +26,9 @@ namespace WSCME.Service
         {
 
         }
-        public void Create(TrainingCentreCategory category)
+        public async void Create(TrainingCentreCategory category)
         {
-            trainingCentreRepository.AddAsync(category);
+            await trainingCentreRepository.AddAsync(category);
             Save();
         }
 
@@ -48,9 +48,9 @@ namespace WSCME.Service
             return await trainingCentreRepository.GetByIdAsync(id);
         }
 
-        public void Save()
+        public async void Save()
         {
-            unitOfWork.Commit();
+            await unitOfWork.Commit();
         }
     }
 }

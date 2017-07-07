@@ -10,7 +10,7 @@ namespace WSCME.Data.Infrastructure
 {
     public class RepositoryAsync<T> : RepositoryBase<T> where T : class
     {
-        private readonly DbSet<T> dbset;
+        protected readonly DbSet<T> dbset;
         public RepositoryAsync(CMEDbContext dataContext) : base(dataContext)
         {
             this.dbset = dataContext.Set<T>();

@@ -42,9 +42,9 @@ namespace WSCME.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public virtual void Commit()
+        public virtual async void Commit()
         {
-            base.SaveChanges();
+            await base.SaveChangesAsync();
         }
     }
 }

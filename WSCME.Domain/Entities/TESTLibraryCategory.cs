@@ -18,6 +18,6 @@ namespace WSCME.Domain
         public TESTLibraryCategory Category { get; set; }
         public IEnumerable<TESTLibraryCategory> Childs { get; set; }
 
-        public IEnumerator<TESTLibrary> TESTLibrarys { get; set; }
+        public IEnumerable<TESTLibraryAndCategory> TESTLibrarys { get; set; }
     }
 }

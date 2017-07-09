@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace WSCME.Data
 {
-    public class TESTLibraryRepository:RepositoryAsync<TESTLibrary>
+    public class TESTLibraryRepository:RepositoryAsync<TESTLibrary>,ITESTLibraryRepository
     {
         public TESTLibraryRepository(CMEDbContext dataContext):base(dataContext)
         {
         }
 
         //public IEnumerable<TESTLibrary> GetPage(){
-        //    base.dataContext.TESTLibrary.Where(c => c.Id == new Guid("1"));
+        //    base.dataContext.TESTLibrary.
         //}
     }
 	public interface ITESTLibraryRepository : IRepository<TESTLibrary>, IRepositoryAsync<TESTLibrary>

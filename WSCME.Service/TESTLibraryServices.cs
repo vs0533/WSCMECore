@@ -31,10 +31,9 @@ namespace WSCME.Service
             Save();
         }
 
-        public Task<IEnumerable<TESTLibrary>> Get()
+        public async Task<IEnumerable<TESTLibrary>> Get()
         {
-            
-            testLibraryRepository.GetAll();
+           return await testLibraryRepository.GetAllAsync();
         }
 
         public Task<TESTLibrary> Get(Guid id)

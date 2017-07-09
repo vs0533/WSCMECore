@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +10,18 @@ namespace WSCME.Data.Infrastructure
     public abstract class RepositoryBase<T> where T :class
     {
         protected readonly CMEDbContext dataContext;
-        private readonly DbSet<T> dbset;
+        protected DbSet<T> dbset;
         public RepositoryBase(CMEDbContext dataContext)
         {
-            this.dataContext = dataContext;
-            this.dbset = this.dataContext.Set<T>();
+            try
+            {
+                this.dataContext = dataContext;
+                this.dbset = this.dataContext.Set<T>();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public virtual void Add(T entity)
         {

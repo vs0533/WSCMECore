@@ -11,7 +11,7 @@ namespace WSCME.Domain
         public string Answer { get; set; }
         public TESTType Type { get; set; }
 
-        public uint Score { get; set; }
+        public int Score { get; set; }
 
         public IEnumerable<TESTLibraryAndCategory> Categorys { get; set; }
     }

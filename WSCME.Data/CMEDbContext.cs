@@ -26,7 +26,7 @@ namespace WSCME.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=192.168.0.112;uid=sa;pwd=Abc@123;database=CMEDB");
+            optionsBuilder.UseSqlServer(@"server=192.168.0.107;uid=sa;pwd=Abc@123;database=CMEDB");
         }
         //public CMEDbContext(DbContextOptions<CMEDbContext> options) : base(options)
         //{

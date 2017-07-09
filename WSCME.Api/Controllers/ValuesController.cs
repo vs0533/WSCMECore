@@ -2,11 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using WSCME.Data;
 using Microsoft.AspNetCore.Authorization;
+using System;
 
 namespace WSCME.Api.Controllers
 {
+    public class TEST
+    {
+        public int Id { get; set; }
+        public string name { get; set; }
+        public Guid guid { get; set; }
+    }
     [Route("api/[controller]")]
-    [Authorize]
     public class ValuesController : Controller
     {
         private readonly ITrainingCentreCategoryRepository repository;
@@ -44,14 +50,15 @@ namespace WSCME.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post(string value)
         {
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, TEST test)
         {
+            var s = Request;
         }
 
         // DELETE api/values/5

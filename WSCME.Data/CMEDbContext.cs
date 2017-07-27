@@ -1,10 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 using WSCME.Domain;
+using WSCME.Domain.Entities.Identity;
+
 namespace WSCME.Data
 {
-    public class CMEDbContext : DbContext
+    public class CMEDbContext :  IdentityDbContext
     {
+        public DbSet<CMEUser> CMEUser { get; set; }
+        public DbSet<CMERole> CMERole { get; set; }
         public DbSet<TrainingCentre> TrainingCentre { get; set; }
         public DbSet<TrainingCentreType> TrainingCentreType { get; set; }
         public DbSet<TrainingCentreCategory> TrainingCentreCategory { get; set; }
@@ -24,16 +30,22 @@ namespace WSCME.Data
 
         public DbSet<AdmissionTicket> AdmissionTicket { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public CMEDbContext(DbContextOptions<CMEDbContext> options):base(options)
         {
-            optionsBuilder.UseSqlServer(@"server=192.168.0.107;uid=sa;pwd=Abc@123;database=CMEDB");
+            
         }
+
+        
         //public CMEDbContext(DbContextOptions<CMEDbContext> options) : base(options)
         //{
 
         //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<AdmissionTicket>()
+            //    .HasOne(d => d.CMEUser)
+            //    .WithOne(d => d.AdmissionTicket);
+
             modelBuilder.Entity<TESTLibraryCategory>()
                         .HasOne(x => x.Category)
                         .WithMany(x => x.Childs)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using WSCME.Domain.Entities.Identity;
 
 namespace WSCME.Domain
 {
@@ -28,6 +29,10 @@ namespace WSCME.Domain
         }
 
         public Guid ExamRoomPlantId { get; set; }
+        
+        //public Guid? UserId { get; set; }
+        //[ForeignKey("UserId")]
+        //public CMEUser CMEUser { get; set; }
 
         [ForeignKey("ExamRoomPlantId")]
         public ExamRoomPlant ExamRoomPlant

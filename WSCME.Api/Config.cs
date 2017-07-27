@@ -5,6 +5,14 @@ namespace WSCME.Api
 {
     public class Config
     {
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+            };
+        }
         public static IEnumerable<ApiResource> GetApiReSource()
         {
             return new List<ApiResource> {
@@ -18,7 +26,7 @@ namespace WSCME.Api
             {
                 new Client{
                     ClientId = "extjs",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     ClientSecrets = {new Secret("secret".Sha256()) },
                     AllowedScopes = { "api1"}
                 }

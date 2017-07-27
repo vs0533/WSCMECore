@@ -9,6 +9,7 @@ namespace WSCME.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Linq;
 using WSCME.Data;
 using WSCME.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using WSCME.Domain.Entities.Identity;
 
 namespace WSCME.Api.Controllers
 {
@@ -14,9 +16,16 @@ namespace WSCME.Api.Controllers
     public class InitController : Controller
     {
         private readonly CMEDbContext context;
-        public InitController(CMEDbContext context)
+        private readonly UserManager<CMEUser> _userManager;
+        private readonly SignInManager<CMEUser> _signInManager;
+        public InitController(
+            CMEDbContext context, 
+            UserManager<CMEUser> userManager, 
+            SignInManager<CMEUser> signInManager)
         {
             this.context = context;
+            this._userManager = userManager;
+            this._signInManager = signInManager;
         }
         [HttpGet]
         public async Task<IEnumerable<dynamic>> init()
@@ -27,6 +36,7 @@ namespace WSCME.Api.Controllers
             await TrainingCenterCategory_();
             await TrainingCenterType_();
             await TrainingCenter_();
+            await InitAccount_();
             //return Json(new { success = true, message = Pinyin.GetPinyin("²Ù×÷Íê³É") });
             var q =  context.TrainingCentre;
             return await q.ToListAsync();
@@ -75,6 +85,15 @@ namespace WSCME.Api.Controllers
             };
             await context.TrainingCentre.AddRangeAsync(tc);
             await context.SaveChangesAsync();
+        }
+
+        private async Task InitAccount_()
+        {
+            CMEUser user = new CMEUser() {
+                UserName = "370303",
+                Email = "3447063@qq.com"
+            };
+           var result = await _userManager.CreateAsync(user, "Abc@123");
         }
     }
 }

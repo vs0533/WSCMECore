@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using WSCME.Data;
 using WSCME.Data.Infrastructure;
+using WSCME.Domain.Entities.Identity;
 
 namespace WSCME.Api
 {
@@ -31,11 +32,13 @@ namespace WSCME.Api
             services.AddDbContext<CMEDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer"))
                 );
-            
 
-            services.AddIdentityServer().AddTemporarySigningCredential()
-               .AddInMemoryApiResources(Config.GetApiReSource())
-               .AddInMemoryClients(Config.GetClients());
+            services.AddIdentity<CMEUser, CMERole>()
+                .AddEntityFrameworkStores<CMEDbContext>()
+                .AddDefaultTokenProviders();
+
+
+            
 
             #region 跨域设置
             services.AddCors(options =>
@@ -54,6 +57,14 @@ namespace WSCME.Api
 
             services.AddMvc();
 
+            services.AddIdentityServer()
+                .AddTemporarySigningCredential()
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiReSource())
+                .AddInMemoryClients(Config.GetClients())
+                .AddAspNetIdentity<CMEUser>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +73,9 @@ namespace WSCME.Api
             loggerFactory.AddConsole(LogLevel.Debug);
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseIdentity();
+            app.UseIdentityServer();
 
             app.UseCors("AllowSpecificOrigin");
             

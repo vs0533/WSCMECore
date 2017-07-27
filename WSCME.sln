@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCME.Service", "WSCME.Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCME.Infrastructure", "WSCME.Infrastructure\WSCME.Infrastructure.csproj", "{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCME.Tests", "WSCME.Tests\WSCME.Tests.csproj", "{BC09FC70-F045-4DB2-81BB-18BC812C324D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCME.Tests", "WSCME.Tests\WSCME.Tests.csproj", "{2DD463AB-1E0F-44E6-800D-D9EADCBB9371}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F0C6793-4092-4A85-A86C-9C2F7B4C0F7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC09FC70-F045-4DB2-81BB-18BC812C324D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC09FC70-F045-4DB2-81BB-18BC812C324D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC09FC70-F045-4DB2-81BB-18BC812C324D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC09FC70-F045-4DB2-81BB-18BC812C324D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD463AB-1E0F-44E6-800D-D9EADCBB9371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD463AB-1E0F-44E6-800D-D9EADCBB9371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD463AB-1E0F-44E6-800D-D9EADCBB9371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD463AB-1E0F-44E6-800D-D9EADCBB9371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

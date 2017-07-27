@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WSCME.Infrastructure\WSCME.Infrastructure.csproj" />
   </ItemGroup>
 

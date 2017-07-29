@@ -17,9 +17,7 @@ namespace WSCME.Data
         public DbSet<TrainingCentreAndType> TrainingCentreAndType { get; set; }
 		public DbSet<TrainingCentreAndCategory> TrainingCentreAndCategory { get; set; }
         public DbSet<TrainingCentreAccount> TrainingCentreAccount { get; set; }
-
-        public DbSet<TESTLibraryCategory> TESTLibraryCategory { get; set; }
-        public DbSet<TESTLibrary> TESTLibrary { get; set; }
+        
 
         public DbSet<RegisterPoint> RegisterPoint { get; set; }
         public DbSet<RegisterPointAccount> RegisterPointAccount { get; set; }
@@ -45,11 +43,6 @@ namespace WSCME.Data
             //modelBuilder.Entity<AdmissionTicket>()
             //    .HasOne(d => d.CMEUser)
             //    .WithOne(d => d.AdmissionTicket);
-
-            modelBuilder.Entity<TESTLibraryCategory>()
-                        .HasOne(x => x.Category)
-                        .WithMany(x => x.Childs)
-                        .HasForeignKey(x=>x.PID).OnDelete(DeleteBehavior.Restrict);
             
             base.OnModelCreating(modelBuilder);
         }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="1.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WSCME.Data\WSCME.Data.csproj" />
     <ProjectReference Include="..\WSCME.Domain\WSCME.Domain.csproj" />
     <ProjectReference Include="..\WSCME.Infrastructure\WSCME.Infrastructure.csproj" />

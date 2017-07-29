@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace WSCME.Data.Infrastructure
 {
-    public class RepositoryAsync<T> : RepositoryBase<T> where T : class
+    public class RepositoryAsync<T,CONTEXT> : RepositoryBase<T,CONTEXT> where T : class where CONTEXT :DbContext
     {
-        public RepositoryAsync(CMEDbContext dataContext) : base(dataContext)
+        public RepositoryAsync(CONTEXT dataContext) : base(dataContext)
         {
             
         }

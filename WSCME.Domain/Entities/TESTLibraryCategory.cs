@@ -13,9 +13,9 @@ namespace WSCME.Domain
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-        public Guid PID { get; set; }
+        public Guid? PID { get; set; }
 
-        public TESTLibraryCategory Category { get; set; }
+        public TESTLibraryCategory Parent { get; set; }
         public IEnumerable<TESTLibraryCategory> Childs { get; set; }
 
         public IEnumerable<TESTLibraryAndCategory> TESTLibrarys { get; set; }

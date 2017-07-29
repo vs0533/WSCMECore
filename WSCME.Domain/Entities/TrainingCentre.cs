@@ -4,6 +4,9 @@ using WSCME.Infrastructure.Validation;
 
 namespace WSCME.Domain
 {
+    /// <summary>
+    /// 培训点
+    /// </summary>
     public class TrainingCentre:EntitiesBase
     {
         /// <summary>

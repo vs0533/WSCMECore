@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WSCME.Data;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Linq;
 
 namespace WSCME.Api.Controllers
 {
@@ -13,6 +14,7 @@ namespace WSCME.Api.Controllers
         public Guid guid { get; set; }
     }
     [Route("api/[controller]")]
+    [Authorize(Roles ="person")]
     public class ValuesController : Controller
     {
         private readonly ITrainingCentreCategoryRepository repository;
@@ -24,21 +26,22 @@ namespace WSCME.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Dictionary<string, dynamic>> d = new List<Dictionary<string, dynamic>>{
-                new Dictionary<string, dynamic>{
-                    { "id","1"},
-                    { "text","水水"},
-                    { "leaf",true},
-                    { "route","/"}
-                },
-                new Dictionary<string, dynamic>{
-                    { "id","2"},
-                    { "text","得到"},
-                    { "leaf",true},
-                    { "route","/"}
-                }
-            };
-            return new ObjectResult(d);
+            return new JsonResult(from c in User.Claims select new { c.Type, c.Value });
+            //IEnumerable<Dictionary<string, dynamic>> d = new List<Dictionary<string, dynamic>>{
+            //    new Dictionary<string, dynamic>{
+            //        { "id","1"},
+            //        { "text","水水"},
+            //        { "leaf",true},
+            //        { "route","/"}
+            //    },
+            //    new Dictionary<string, dynamic>{
+            //        { "id","2"},
+            //        { "text","得到"},
+            //        { "leaf",true},
+            //        { "route","/"}
+            //    }
+            //};
+            //return new ObjectResult(d);
         }
 
         // GET api/values/5

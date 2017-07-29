@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using WSCME.Data;
 using WSCME.Data.Infrastructure;
 using WSCME.Domain.Entities.Identity;
+using IdentityServer4.Validation;
+using WSCME.Service;
+using IdentityServer4.Services;
 
 namespace WSCME.Api
 {
@@ -64,6 +67,9 @@ namespace WSCME.Api
                 .AddInMemoryApiResources(Config.GetApiReSource())
                 .AddInMemoryClients(Config.GetClients())
                 .AddAspNetIdentity<CMEUser>();
+
+            services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
+            services.AddTransient<IProfileService, ProfileService>();
             
         }
 

@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace WSCME.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T :class
+    public abstract class RepositoryBase<T,CONTEXT> where T :class where CONTEXT:DbContext
     {
-        protected readonly CMEDbContext dataContext;
+        protected readonly CONTEXT dataContext;
         protected DbSet<T> dbset;
-        public RepositoryBase(CMEDbContext dataContext)
+        public RepositoryBase(CONTEXT dataContext)
         {
             try
             {

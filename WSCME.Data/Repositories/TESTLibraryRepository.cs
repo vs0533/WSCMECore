@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace WSCME.Data
 {
-    public class TESTLibraryRepository:RepositoryAsync<TESTLibrary>,ITESTLibraryRepository
+    public class TESTLibraryRepository:RepositoryAsync<TESTLibrary,CMEExamDbContext>,ITESTLibraryRepository
     {
-        public TESTLibraryRepository(CMEDbContext dataContext):base(dataContext)
+        public TESTLibraryRepository(CMEExamDbContext dataContext):base(dataContext)
         {
         }
 

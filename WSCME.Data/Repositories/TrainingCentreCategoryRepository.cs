@@ -6,7 +6,7 @@ using WSCME.Domain;
 
 namespace WSCME.Data
 {
-    public class TrainingCentreCategoryRepository:RepositoryAsync<TrainingCentreCategory>, ITrainingCentreCategoryRepository
+    public class TrainingCentreCategoryRepository:RepositoryAsync<TrainingCentreCategory,CMEDbContext>, ITrainingCentreCategoryRepository
     {
         public TrainingCentreCategoryRepository(CMEDbContext dataContext):base(dataContext)
         {

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace WSCME.Domain.Enum
 {
+    /// <summary>
+    /// 考场计划状态
+    /// </summary>
     public enum ExamRoomPlantState
     {
         /// <summary>

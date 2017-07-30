@@ -12,6 +12,7 @@
     <ProjectReference Include="..\WSCME.Data\WSCME.Data.csproj" />
     <ProjectReference Include="..\WSCME.Domain\WSCME.Domain.csproj" />
     <ProjectReference Include="..\WSCME.Infrastructure\WSCME.Infrastructure.csproj" />
+    <ProjectReference Include="..\Microsoft.EntityFrameworkCore.UnitOfWork\Microsoft.EntityFrameworkCore.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>

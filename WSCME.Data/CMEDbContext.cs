@@ -1,16 +1,23 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using System;
+﻿using Microsoft.EntityFrameworkCore;
 using WSCME.Domain;
-using WSCME.Domain.Entities.Identity;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System;
 
 namespace WSCME.Data
 {
-    public class CMEDbContext :  IdentityDbContext
+    public class CMEDbContext :  DbContext
     {
-        public DbSet<CMEUser> CMEUser { get; set; }
-        public DbSet<CMERole> CMERole { get; set; }
+        public DbSet<Unit> Unit { get; set; }
+        public DbSet<Person> Person { get; set; }
+        public DbSet<ExamSubject> ExamSubject { get; set; }
+        public DbSet<ProfessionalTitle> ProfessionalTitle { get; set; }
+        public DbSet<ProfessionalTitleCategory> ProfessionalTitleCategory { get; set; }
+        public DbSet<ProfessionalTitleLevel> ProfessionalTitleLevel { get; set; }
+        public DbSet<Profession> Profession { get; set; }
+        public DbSet<ExamSubjectAndProfessionalTitleCategory> ExamSubjectAndProfessionalTitleCategory { get; set; }
+
+
+
         public DbSet<TrainingCentre> TrainingCentre { get; set; }
         public DbSet<TrainingCentreType> TrainingCentreType { get; set; }
         public DbSet<TrainingCentreCategory> TrainingCentreCategory { get; set; }
@@ -33,23 +40,21 @@ namespace WSCME.Data
             
         }
 
-        
-        //public CMEDbContext(DbContextOptions<CMEDbContext> options) : base(options)
-        //{
 
-        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<AdmissionTicket>()
-            //    .HasOne(d => d.CMEUser)
-            //    .WithOne(d => d.AdmissionTicket);
-            
             base.OnModelCreating(modelBuilder);
         }
+    }
 
-        public virtual async void Commit()
+    public class CMEDBContextFactory : IDbContextFactory<CMEDbContext>
+    {
+        public CMEDbContext Create(DbContextFactoryOptions options)
         {
-            await base.SaveChangesAsync();
+            var optionsBuilder = new DbContextOptionsBuilder<CMEDbContext>();
+            optionsBuilder.UseSqlServer("server=192.168.1.120;uid=sa;pwd=Abc@123;database=CMEDB");
+            return new CMEDbContext(optionsBuilder.Options);
         }
     }
+
 }

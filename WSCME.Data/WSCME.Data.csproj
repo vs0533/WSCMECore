@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Exam\" />
+    <Compile Remove="Infrastructure\IRepository.cs" />
+    <Compile Remove="Infrastructure\IRepositoryAsync.cs" />
   </ItemGroup>
-
 </Project>

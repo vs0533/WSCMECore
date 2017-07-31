@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -36,13 +37,22 @@ namespace WSCME.Domain
         [StringLength(100)]
         public string Address { get; set; }
 
-        public Guid? CurApplyTrainingCentreId { get; set; }
-        public Guid? CurApplyTrainingCentreId_Servant { get; set; }
+        //public Guid? CurApplyTrainingCentreId { get; set; }
+        //public Guid? CurApplyTrainingCentreId_Servant { get; set; }
 
-        [ForeignKey("CurApplyTrainingCentreId")]
-        public TrainingCentre CurrentApplyTrainingCentre { get; set; }
-        [ForeignKey("CurApplyTrainingCentreId_Servant")]
-        public TrainingCentre CurrentApplyTrainingCentre_Servant { get; set; }
+        //[ForeignKey("CurApplyTrainingCentreId")]
+        //public TrainingCentre CurrentApplyTrainingCentre { get; set; }
+        //[ForeignKey("CurApplyTrainingCentreId_Servant")]
+        //public TrainingCentre CurrentApplyTrainingCentre_Servant { get; set; }
+
+        public PersonWallet Wallet { get; set; }
+
+        public IEnumerable<PersonRegister> Registers { get; set; }
+        public IEnumerable<PersonExamSubjectPass> ExamSubjectPasses { get; set; }
+        public IEnumerable<PersonExamResult> ExamResults { get; set; }
+
+        public IEnumerable<PersonRegisterForUnitDetails> RegisterForUnitDetails { get; set; }
+
 
     }
 }

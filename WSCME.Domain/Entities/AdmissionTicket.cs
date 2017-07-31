@@ -40,5 +40,8 @@ namespace WSCME.Domain
             get;
             set;
         }
+
+        public PersonExamResult PersonExamResult { get; set; }
+
     }
 }

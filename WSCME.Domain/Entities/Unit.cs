@@ -26,8 +26,14 @@ namespace WSCME.Domain
 
         public Guid PID { get; set; }
 
+        public Guid UnitNatureId { get; set; }
+
+
         public Unit Parent { get; set; }
 
         public IEnumerable<Unit> Childs { get; set; }
+        public UnitNature UnitNature { get; set; }
+        public IEnumerable<PersonRegisterForUnit> PersonRegisterForUnit { get; set; }
+
     }
 }

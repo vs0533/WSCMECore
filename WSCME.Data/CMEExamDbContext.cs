@@ -32,7 +32,7 @@ namespace WSCME.Data
         public CMEExamDbContext Create(DbContextFactoryOptions options)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CMEExamDbContext>();
-            optionsBuilder.UseSqlServer("server=192.168.1.120;uid=sa;pwd=Abc@123;database=CMEDB_Exam");
+            optionsBuilder.UseSqlServer("server=192.168.4.107;uid=sa;pwd=Abc@123;database=CMEDB_Exam");
             return new CMEExamDbContext(optionsBuilder.Options);
         }
     }

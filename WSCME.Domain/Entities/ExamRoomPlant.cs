@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WSCME.Domain.Enum;
 
@@ -14,6 +16,8 @@ namespace WSCME.Domain
         /// <summary>
         /// 场次序号
         /// </summary>
+        [Required(ErrorMessage =  "场次序号必须填写")]
+        [StringLength(8,MinimumLength = 8,ErrorMessage = "场次序号必须是8位结构为两位年+四位科目ID+两位顺序号")]
         public string Number { get; set; }
 
         public DateTime SelectTime { get; set; }
@@ -32,5 +36,12 @@ namespace WSCME.Domain
 
         [ForeignKey("ExamRoomId")]
         public ExamRoom ExamRoom { get; set; }
+
+        public IEnumerable<PersonExamResult> PersonExamResult { get; set; }
+
+        public Guid ExamPointId { get; set; }
+
+        public ExamPoint ExamPoint { get; set; }
+
     }
 }

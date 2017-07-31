@@ -29,6 +29,11 @@ namespace WSCME.Domain
         public TrainingCentre TrainingCentre { get; set; }
 
         public IEnumerable<ExamSubjectAndProfessionalTitleCategory> ProfessionalTitleCategorys { get; set; }
+        public IEnumerable<PersonRegister> PersonRegisters { get; set; }
+        public IEnumerable<PersonExamResult> PersonExamResults { get; set; }
+        public IEnumerable<PersonExamSubjectPass> PersonExamSubjectPasses { get; set; }
+
+
 
     }
 }

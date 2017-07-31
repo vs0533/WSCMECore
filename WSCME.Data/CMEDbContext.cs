@@ -2,6 +2,7 @@
 using WSCME.Domain;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WSCME.Data
 {
@@ -35,6 +36,18 @@ namespace WSCME.Data
 
         public DbSet<AdmissionTicket> AdmissionTicket { get; set; }
 
+        public DbSet<PersonExamResult> PersonExamResult { get; set; }
+        public DbSet<PersonExamSubjectPass> PersonExamSubjectPass { get; set; }
+        public DbSet<PersonRegister> PersonRegister { get; set; }
+        public DbSet<PersonRegisterForUnit> PersonRegisterForUnit { get; set; }
+        public DbSet<PersonRegisterForUnitDetails> PersonRegisterForUnitDetails { get; set; }
+        public DbSet<PersonWallet> PersonWallet { get; set; }
+        public DbSet<PersonWalletNote> PersonWalletNote { get; set; }
+        public DbSet<UnitNature> UnitNature { get; set; }
+
+
+
+
         public CMEDbContext(DbContextOptions<CMEDbContext> options):base(options)
         {
             
@@ -43,6 +56,20 @@ namespace WSCME.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<PersonExamResult>()
+                        .HasOne(d=>d.ExamRoomPlant)
+                        .WithMany(d=>d.PersonExamResult)
+                        .HasForeignKey(d=>d.ExamRoomPlantId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<PersonExamSubjectPass>()
+                        .HasOne(d => d.PersonExamResult)
+                        .WithOne(d => d.ExamSubjectPass).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ExamRoomPlant>()
+                        .HasOne(d => d.ExamPoint)
+                        .WithMany(d => d.ExamRoomPlants)
+                        .HasForeignKey(d=>d.ExamPointId).OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(modelBuilder);
         }
     }
@@ -52,7 +79,7 @@ namespace WSCME.Data
         public CMEDbContext Create(DbContextFactoryOptions options)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CMEDbContext>();
-            optionsBuilder.UseSqlServer("server=192.168.1.120;uid=sa;pwd=Abc@123;database=CMEDB");
+            optionsBuilder.UseSqlServer("server=192.168.4.107;uid=sa;pwd=Abc@123;database=CMEDB");
             return new CMEDbContext(optionsBuilder.Options);
         }
     }

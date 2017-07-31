@@ -32,5 +32,7 @@ namespace WSCME.Domain
 
         public IEnumerable<RegisterPoint> RegisterPoints { get; set; }
         public IEnumerable<ExamPoint> ExamPoints { get; set; }
+        public IEnumerable<PersonRegister> PersonRegisters { get; set; }
+
     }
 }

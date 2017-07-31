@@ -22,5 +22,7 @@ namespace WSCME.Domain
         public TrainingCentre TrainingCentre { get; set; }
 
         public IEnumerable<ExamRoom> Rooms { get; set; }
+        public IEnumerable<ExamRoomPlant> ExamRoomPlants { get; set; }
+
     }
 }

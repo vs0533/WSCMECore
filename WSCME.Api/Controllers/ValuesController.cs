@@ -17,10 +17,10 @@ namespace WSCME.Api.Controllers
     [Authorize(Roles ="person")]
     public class ValuesController : Controller
     {
-        private readonly ITrainingCentreCategoryRepository repository;
-        public ValuesController(ITrainingCentreCategoryRepository repository)
+        //private readonly ITrainingCentreCategoryRepository repository;
+        public ValuesController()
         {
-            this.repository = repository;
+            //this.repository = repository;
         }
         // GET api/values
         [HttpGet]

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WSCME.Data\WSCME.Data.csproj" />
     <ProjectReference Include="..\WSCME.Service\WSCME.Service.csproj" />
+    <ProjectReference Include="..\Microsoft.EntityFrameworkCore.UnitOfWork\Microsoft.EntityFrameworkCore.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>

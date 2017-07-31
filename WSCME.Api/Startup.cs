@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using IdentityServer4.Services;
+using IdentityServer4.Validation;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 using WSCME.Data;
-using WSCME.Data.Infrastructure;
 using WSCME.Domain.Entities.Identity;
-using IdentityServer4.Validation;
 using WSCME.Service;
-using IdentityServer4.Services;
 
 namespace WSCME.Api
 {

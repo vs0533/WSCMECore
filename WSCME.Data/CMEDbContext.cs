@@ -70,6 +70,9 @@ namespace WSCME.Data
                         .WithMany(d => d.ExamRoomPlants)
                         .HasForeignKey(d=>d.ExamPointId).OnDelete(DeleteBehavior.Restrict);
 
+
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

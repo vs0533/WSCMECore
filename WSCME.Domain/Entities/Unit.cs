@@ -19,12 +19,16 @@ namespace WSCME.Domain
         public string Name { get; set; }
 
         public UnitType UnitType { get; set; }
+        [StringLength(50)]
         public string LinkMan { get; set; }
+        [StringLength(20)]
         public string LinkPhoto { get; set; }
+        [StringLength(100)]
         public string Email { get; set; }
+        [StringLength(100)]
         public string Address { get; set; }
 
-        public Guid PID { get; set; }
+        public Guid? PID { get; set; }
 
         public Guid UnitNatureId { get; set; }
 
@@ -34,6 +38,11 @@ namespace WSCME.Domain
         public IEnumerable<Unit> Childs { get; set; }
         public UnitNature UnitNature { get; set; }
         public IEnumerable<PersonRegisterForUnit> PersonRegisterForUnit { get; set; }
+        public IEnumerable<UnitAccount> Accounts { get; set; }
+
+        [Timestamp]
+        public byte[] Version { get; set; }
+
 
     }
 }

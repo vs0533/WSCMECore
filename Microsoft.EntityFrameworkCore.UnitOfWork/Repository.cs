@@ -278,9 +278,10 @@ namespace Microsoft.EntityFrameworkCore
         {
             // using a stub entity to mark for deletion
             var typeInfo = typeof(TEntity).GetTypeInfo();
-            var key = _dbContext.Model.FindEntityType(typeInfo.Name).FindPrimaryKey().Properties.FirstOrDefault();
+            var key = _dbContext.Model.FindEntityType(typeInfo.FullName).FindPrimaryKey().Properties.FirstOrDefault();
+            var version = _dbContext.Model.FindEntityType(typeInfo.FullName).FindProperty("Version")?.PropertyInfo;
             var property = typeInfo.GetProperty(key?.Name);
-            if (property != null)
+            if (version == null && property != null)
             {
                 var entity = Activator.CreateInstance<TEntity>();
                 property.SetValue(entity, id);

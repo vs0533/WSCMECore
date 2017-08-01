@@ -51,10 +51,7 @@ namespace WSCME.Api
             #endregion
 
             #region 注册异步提交服务
-            services.AddScoped<IUnitOfWorkAsync, UnitOfWorkAsync>();
 
-
-            services.AddScoped<ITrainingCentreCategoryRepository, TrainingCentreCategoryRepository>(); 
             #endregion
 
             services.AddMvc();

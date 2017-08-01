@@ -8,7 +8,7 @@ namespace WSCME.Data
 {
     public class CMEDbContext :  DbContext
     {
-        public DbSet<Unit> Unit { get; set; }
+        
         public DbSet<Person> Person { get; set; }
         public DbSet<ExamSubject> ExamSubject { get; set; }
         public DbSet<ProfessionalTitle> ProfessionalTitle { get; set; }
@@ -44,6 +44,8 @@ namespace WSCME.Data
         public DbSet<PersonWallet> PersonWallet { get; set; }
         public DbSet<PersonWalletNote> PersonWalletNote { get; set; }
         public DbSet<UnitNature> UnitNature { get; set; }
+        public DbSet<Unit> Unit { get; set; }
+        public DbSet<UnitAccount> UnitAccount { get; set; }
 
 
 

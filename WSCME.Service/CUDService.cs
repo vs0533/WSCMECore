@@ -15,10 +15,11 @@ namespace WSCME.Service
         void Delete(Guid Id);
         void Update(Entities entity);
         Task<Entities> GetById(Guid Id);
-		Task<IPagedList<Entities>> GetPageListAsync(
+        Task<IPagedList<Entities>> GetPageListAsync(
             Expression<Func<Entities, bool>> predicate = null,
-			int pageIndex = 0, int pageSize = 20);
+            int pageIndex = 0, int pageSize = 20);
         Task<IEnumerable<Entities>> GetAll();
+        Task<IEnumerable<Entities>> GetWhere(Expression<Func<Entities, bool>> where);
     }
     public class DefaultCUDService<Entities> where Entities : EntitiesBase
     {
@@ -26,25 +27,19 @@ namespace WSCME.Service
         private readonly IRepository<Entities> _repository;
         public DefaultCUDService(IUnitOfWork<CMEDbContext> _unitOfWork)
         {
-            _repository = _unitOfWork.GetRepository<Entities>();
+            this._unitOfWork = _unitOfWork;
+            this._repository = _unitOfWork.GetRepository<Entities>();
         }
         public virtual async void Create(Entities entity)
         {
-            try
-            {
-                await _repository.InsertAsync(entity);
-                await _unitOfWork.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-
-            }
+            await _repository.InsertAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
         }
 
-        public virtual async void Delete(Guid Id)
+        public virtual void Delete(Guid Id)
         {
             _repository.Delete(Id);
-            await _unitOfWork.SaveChangesAsync();
+            _unitOfWork.SaveChanges();
         }
 
         public virtual async Task<Entities> GetById(Guid Id)
@@ -61,7 +56,7 @@ namespace WSCME.Service
 
         public virtual async Task<IPagedList<Entities>> GetPageListAsync(
             Expression<Func<Entities, bool>> predicate = null,
-            int pageIndex = 0,int pageSize = 20)
+            int pageIndex = 0, int pageSize = 20)
         {
             var result = await _repository.GetPagedListAsync(predicate, null, null, pageIndex, pageSize);
             return result;
@@ -69,7 +64,13 @@ namespace WSCME.Service
 
         public virtual async Task<IEnumerable<Entities>> GetAll()
         {
-            var result = await _repository.Query(disableTracking: true).OrderByDescending(x =>x.Created).ToListAsync<Entities>();
+            var result = await _repository.Query(disableTracking: true).OrderByDescending(x => x.Created).ToListAsync<Entities>();
+            return result;
+        }
+
+        public virtual async Task<IEnumerable<Entities>> GetWhere(Expression<Func<Entities,bool>> where)
+        {
+            var result = await _repository.Query(disableTracking:false,predicate:where).OrderByDescending(x=>x.Created).ToListAsync();
             return result;
         }
     }

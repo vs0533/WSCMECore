@@ -29,8 +29,6 @@ namespace WSCME.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
             services.AddDbContext<CMEDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer"))
                 );
@@ -39,9 +37,6 @@ namespace WSCME.Api
                 .AddEntityFrameworkStores<CMEDbContext>()
                 .AddDefaultTokenProviders();
 
-
-            
-
             #region 跨域设置
             services.AddCors(options =>
             {
@@ -49,11 +44,7 @@ namespace WSCME.Api
                     builder => builder.WithOrigins("http://localhost:1841").AllowAnyMethod().AllowAnyHeader());
             });
             #endregion
-
-            #region 注册异步提交服务
-
-            #endregion
-
+            
             services.AddMvc();
 
             services.AddIdentityServer()
@@ -76,10 +67,11 @@ namespace WSCME.Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseCors("AllowSpecificOrigin");
+
             app.UseIdentity();
             app.UseIdentityServer();
 
-            app.UseCors("AllowSpecificOrigin");
             
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {

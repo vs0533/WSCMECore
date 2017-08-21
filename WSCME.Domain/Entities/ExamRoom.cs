@@ -11,6 +11,8 @@ namespace WSCME.Domain
     /// </summary>
     public class ExamRoom:EntitiesBase
     {
+        public string Code { get; set; }
+        public string PassWord { get; set; }
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }

@@ -13,9 +13,11 @@ namespace WSCME.Api.Exam.Controllers
     public class ValuesController : Controller
     {
         private readonly ITESTLibraryCategoryServices testlibrarycategoryService;
-        public ValuesController(ITESTLibraryCategoryServices testlibrarycategoryService)
+        private readonly IUnitAccountServices unitAccountServices;
+        public ValuesController(ITESTLibraryCategoryServices testlibrarycategoryService, IUnitAccountServices unitAccountServices)
         {
             this.testlibrarycategoryService = testlibrarycategoryService;
+            this.unitAccountServices = unitAccountServices;
         }
         // GET api/values
         [HttpGet]

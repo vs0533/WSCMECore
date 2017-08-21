@@ -21,12 +21,13 @@ namespace WSCME.TestX
 			_serviceCollection.AddDbContext<CMEDbContext>(
 			  options =>
 			  {
-			      options.UseSqlServer("server=192.168.4.107;uid=sa;pwd=Abc@123;database=CMEDB");
+			      options.UseSqlServer("server=.;uid=sa;pwd=Abc@123;database=CMEDB");
 			  }
 			);
 
 			_serviceCollection.AddUnitOfWork<CMEDbContext>();
 			_serviceCollection.AddScoped<IUnitServices, UnitServices>();
+            _serviceCollection.AddScoped<IUnitAccountServices, UnitAccountServices>();
 
             this.provider = _serviceCollection.BuildServiceProvider();
 		}
@@ -77,13 +78,13 @@ namespace WSCME.TestX
             var _unitService = provider.GetService<IUnitServices>();
             ResetDB();
             Create(_unitService);
-            var result = await _unitService.GetWhere(x => x.Code == "370303");
+            var result = await _unitService.GetListWhere(x => x.Code == "370303");
             Assert.NotEqual(result.Count(), 0);
             var update = result.First();
             update.Code = "update";
             _unitService.Update(update);
 
-            var valid = await _unitService.GetWhere(x => x.Code == "update");
+            var valid = await _unitService.GetListWhere(x => x.Code == "update");
             Assert.NotEqual(valid.Count(), 0);
         }
         [Fact]
@@ -97,6 +98,13 @@ namespace WSCME.TestX
             {
                 _unitService.Delete(item.Id);
             }
+        }
+        [Fact]
+        public async void GetUnitAccount()
+        {
+            var _unitAccountService = provider.GetService<IUnitAccountServices>();
+            var unitaccount = await _unitAccountService.GetFirstOrDefault(c => c.Code == "luruisheng" && c.PassWord == "111111");
+            Assert.NotNull(unitaccount);
         }
     }
 }

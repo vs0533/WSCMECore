@@ -1,5 +1,6 @@
 ﻿using IdentityModel;
 using IdentityServer4;
+using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace WSCME.Service
 {
     public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
     {
+        private readonly IUnitAccountServices unitAccountServices = null;
+        public ResourceOwnerPasswordValidator(IUnitAccountServices unitAccountServices)
+        {
+            this.unitAccountServices = unitAccountServices;
+        }
         public static Claim[] GetUserClaims()
         {
             return new Claim[]
@@ -27,8 +33,16 @@ namespace WSCME.Service
             new Claim(JwtClaimTypes.Role, "person")
             };
         }
-        public  Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+        public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
+            var loggedIn = await unitAccountServices.GetFirstOrDefault(c => c.Code == context.UserName && c.PassWord == context.Password);
+
+            if (loggedIn == null)
+            {
+                context.Result = new GrantValidationResult(TokenRequestErrors.InvalidClient, "用户名密码不正确");
+                return;
+
+            }
             var test = context.Request.Raw["logintype"];
             try
             {
@@ -43,7 +57,7 @@ namespace WSCME.Service
 
                 throw;
             }
-            return Task.FromResult(0);
+            return;
         }
     }
 }

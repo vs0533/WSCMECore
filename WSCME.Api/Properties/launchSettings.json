@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://192.168.0.107:58109/",
+      "applicationUrl": "http://192.168.0.102:5000/",
       "sslPort": 0
     }
   },
@@ -13,7 +13,8 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://192.168.4.102:5000"
     },
     "WSCME.Api": {
       "commandName": "Project",
@@ -22,7 +23,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5000"
+      "applicationUrl": "http://192.168.4.102:5000"
     }
   }
 }

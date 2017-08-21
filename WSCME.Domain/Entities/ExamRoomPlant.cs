@@ -12,7 +12,7 @@ namespace WSCME.Domain
     public class ExamRoomPlant:EntitiesBase
     {
         public DateTime BeginTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public int LengthTime { get; set; }
         /// <summary>
         /// 场次序号
         /// </summary>

@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using WSCME.Data;
 using WSCME.Service;
+using IdentityServer4.Services;
+using IdentityServer4.Validation;
 
 namespace WSCME.Api.Exam
 {
@@ -33,10 +35,29 @@ namespace WSCME.Api.Exam
                     options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer_EXAM"))
                 ).AddUnitOfWork<CMEExamDbContext, CMEDbContext>();
 
-            // Add framework services.
+
+            #region 跨域设置
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:1841", "http://192.168.4.102:5000").AllowAnyMethod().AllowAnyHeader());
+            });
+            #endregion
+
             services.AddMvc();
 
+            services.AddIdentityServer()
+                .AddTemporarySigningCredential()
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiReSource())
+                .AddInMemoryClients(Config.GetClients());
+
+            services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
+            services.AddTransient<IProfileService, ProfileService>();
+
             services.AddScoped<ITESTLibraryCategoryServices, TESTLibraryCategoryService>();
+            services.AddScoped<IUnitAccountServices, UnitAccountServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +65,19 @@ namespace WSCME.Api.Exam
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseCors("AllowSpecificOrigin"); //跨域必须设置在这里 一开始这里 切记
+
+
+            app.UseIdentityServer();
+
+
+
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5001",
+                RequireHttpsMetadata = false,
+                ApiName = "api1"
+            });
 
             app.UseMvc();
         }

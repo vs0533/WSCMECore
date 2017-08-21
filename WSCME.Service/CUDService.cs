@@ -19,7 +19,8 @@ namespace WSCME.Service
             Expression<Func<Entities, bool>> predicate = null,
             int pageIndex = 0, int pageSize = 20);
         Task<IEnumerable<Entities>> GetAll();
-        Task<IEnumerable<Entities>> GetWhere(Expression<Func<Entities, bool>> where);
+        Task<IEnumerable<Entities>> GetListWhere(Expression<Func<Entities, bool>> where);
+        Task<Entities> GetFirstOrDefault(Expression<Func<Entities, bool>> where);
     }
     public class DefaultCUDService<Entities> where Entities : EntitiesBase
     {
@@ -68,10 +69,14 @@ namespace WSCME.Service
             return result;
         }
 
-        public virtual async Task<IEnumerable<Entities>> GetWhere(Expression<Func<Entities,bool>> where)
+        public virtual async Task<IEnumerable<Entities>> GetListWhere(Expression<Func<Entities, bool>> where)
         {
-            var result = await _repository.Query(disableTracking:false,predicate:where).OrderByDescending(x=>x.Created).ToListAsync();
+            var result = await _repository.Query(disableTracking: false, predicate: where).OrderByDescending(x => x.Created).ToListAsync();
             return result;
+        }
+        public virtual async Task<Entities> GetFirstOrDefault(Expression<Func<Entities, bool>> where)
+        {
+            return await _repository.Query(disableTracking: false, predicate: where).OrderByDescending(x => x.Created).FirstOrDefaultAsync();
         }
     }
 
